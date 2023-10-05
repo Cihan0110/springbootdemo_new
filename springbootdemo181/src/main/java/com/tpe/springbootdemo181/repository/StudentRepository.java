@@ -4,6 +4,15 @@ import com.tpe.springbootdemo181.domain.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository  //Optional Since we have extended JpaRepository
-public interface StudentRepository extends JpaRepository<Student,Long> {  //Pojo class, Primary Key data  Type
+@Repository // optional since we have extended JpaRepository already.
+public interface StudentRepository extends JpaRepository<Student, Long> {  // Pojo class, primary key data type.
+    boolean existsByEmail(String email);
+
+
 }
+
+
+
+
+
+
