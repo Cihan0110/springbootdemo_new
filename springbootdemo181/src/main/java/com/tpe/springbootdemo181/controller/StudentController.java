@@ -119,5 +119,25 @@ public class StudentController {
         return ResponseEntity.ok(pageOfStudents);
     }
 
+    // Getting Students by their last name.
+    @GetMapping("/search") // http://localhost:8080/students/search?lastname=A
+    public ResponseEntity<List<Student>> getStudentsByLastName(@RequestParam("lastname") String lastName){
+
+        List<Student> students = studentService.findStudentsByLastName(lastName);
+
+        return ResponseEntity.ok(students);
+
+    }
+
+    // Get Students by their grade.
+    @GetMapping("/search/{grade}") // http://localhost:8080/students/search/90
+    public ResponseEntity<List<Student>> getStudentsByGrade(@PathVariable int grade){
+
+        List<Student> students = studentService.findStudentsByGrade(grade);
+
+        return ResponseEntity.ok(students);
+
+    }
+
 
 }

@@ -1,6 +1,8 @@
 package com.tpe.springbootdemo181.dto;
 
 
+import com.tpe.springbootdemo181.domain.Student;
+
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
@@ -76,6 +78,22 @@ public class StudentDTO {
 
     public LocalDateTime getCreationDate() {
         return creationDate;
+    }
+
+    // Constructor
+    public StudentDTO() {
+
+    }
+
+    public StudentDTO(Student student){
+
+        this.setId(0L);
+        this.setFirstName(student.getName());
+        this.setLastName(student.getLastName());
+        this.setGrade(student.getGrade());
+        this.setEmail(student.getEmail());
+        this.setPhoneNumber(student.getPhoneNumber());
+
     }
 
 }
