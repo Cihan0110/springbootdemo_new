@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.UniqueElements;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -41,5 +43,8 @@ public class Student {
 
     @Setter(AccessLevel.NONE)
     private LocalDateTime creationDate = LocalDateTime.now();
+
+    @OneToMany(mappedBy = "student")
+    private List<Book> books = new ArrayList<>();
 
 }

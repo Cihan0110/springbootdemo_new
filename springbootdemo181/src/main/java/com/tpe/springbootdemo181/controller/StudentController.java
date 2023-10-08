@@ -3,6 +3,8 @@ package com.tpe.springbootdemo181.controller;
 import com.tpe.springbootdemo181.domain.Student;
 import com.tpe.springbootdemo181.dto.StudentDTO;
 import com.tpe.springbootdemo181.service.StudentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +27,8 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
+    Logger logger = LoggerFactory.getLogger(StudentController.class);
 
     // Get All Students
     @GetMapping // http://localhost:8080/students + GET
@@ -137,6 +142,25 @@ public class StudentController {
 
         return ResponseEntity.ok(students);
 
+    }
+
+    // Get StudentDTO by id
+    // Get StudentDTO by id
+    @GetMapping("/queryId") // http://localhost:8080/students/queryId?id=2
+    public ResponseEntity<StudentDTO> getStudentDTOById(@RequestParam("id") Long id){
+
+        StudentDTO studentDTO = studentService.getStudentDTOById(id);
+
+        return ResponseEntity.ok(studentDTO);
+
+    }
+
+    @GetMapping("/welcome") //http://localhost:8080/students/welcome + GET
+    public String welcome(HttpServletRequest request){
+
+        logger.warn("============= Welcome endpoint has been executed {}", request.getServletPath());
+        logger.info("=========={}", request.getRemoteUser());
+        return "Welcome to the Student App";
     }
 
 
