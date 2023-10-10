@@ -12,6 +12,12 @@ spring:
     password: db_password
     driver-class-name: org.postgresql.Driver
 
+  security:
+      user:
+        name: name
+        password: 1234
+
+
 jpa:
   hibernate:
     ddl-auto: update
